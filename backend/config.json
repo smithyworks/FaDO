@@ -1,0 +1,76 @@
+{
+  "clusters": [
+    {
+      "name": "cluster-1",
+      "zones": [
+        "global",
+        "zone-1"
+      ]
+    },
+    {
+      "name": "cluster-2",
+      "zones": [
+        "global",
+        "zone-2"
+      ]
+    },
+    {
+      "name": "cluster-3",
+      "zones": [
+        "global",
+        "zone-3"
+      ]
+    }
+  ],
+  "storage_deployments": [
+    {
+      "cluster_name": "cluster-1",
+      "alias": "d1",
+      "endpoint": "api.minio-1.fado",
+      "access_key": "minio",
+      "secret_key": "minio123",
+      "use_ssl": true,
+      "management_url": "https://minio-1.fado"
+    },
+    {
+      "cluster_name": "cluster-2",
+      "alias": "d2",
+      "endpoint": "api.minio-2.fado",
+      "access_key": "minio",
+      "secret_key": "minio123",
+      "use_ssl": true,
+      "management_url": "https://minio-2.fado"
+    },
+    {
+      "cluster_name": "cluster-3",
+      "alias": "d3",
+      "endpoint": "api.minio-3.fado",
+      "access_key": "minio",
+      "secret_key": "minio123",
+      "use_ssl": true,
+      "management_url": "https://minio-3.fado"
+    }
+  ],
+  "faas_deployments": [
+    {
+      "cluster_name": "cluster-1",
+      "url": "http://127.17.0.1:4001"
+    },
+    {
+      "cluster_name": "cluster-2",
+      "url": "http://127.17.0.1:4002"
+    },
+    {
+      "cluster_name": "cluster-3",
+      "url": "http://127.17.0.1:4003"
+    }
+  ],
+  "buckets": [
+    {
+      "name": "global",
+      "storage_deployment_alias": "d1",
+      "allowed_zones": ["global"],
+      "target_replica_count": 4
+    }
+  ]
+}
