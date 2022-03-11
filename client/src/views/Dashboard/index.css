@@ -1,0 +1,24 @@
+a.Dashboard-card {
+  display: inline-flex;
+  width: calc(50% - 22px);
+  height: 125px;
+  padding: 10px 20px;
+  margin: 10px;
+
+  flex-direction: column;
+  justify-content: center;
+
+  background-color: green;
+  color: white;
+  text-decoration: none;
+}
+
+.Dashboard-card-number {
+  font-size: 48px;
+  font-weight: bolder;
+}
+
+.Dashboard-card-name {
+  font-size: 24px;
+  font-weight: 300;
+}

@@ -1,0 +1,37 @@
+.Deployments-modal {
+  width: 600px;
+  padding: 20px;
+  margin-top: 10%;
+  margin-left: calc(50% - 300px);
+}
+
+.Deployments-modal-header {
+  margin-bottom: 20px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.Deployments-modal-header svg {
+  cursor: pointer;
+}
+
+.Deployments-modal-info-pre {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.Deployments-modal-footer {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.Deployments-modal .Deployments-modal-text-field {
+  display: inline-block;
+  width: calc(50% - 5px);
+}
+.Deployments-modal .Deployments-modal-text-field:nth-child(2n + 1) {
+  margin-right: 10px;
+}

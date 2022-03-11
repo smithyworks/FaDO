@@ -1,0 +1,45 @@
+.Table {
+  margin-bottom: 20px;
+}
+
+.Table-header {
+  display: flex;
+  border-bottom: 1px solid lightgrey;
+}
+
+.Table-header-cell {
+  padding: 10px;
+  color: darkblue;
+  font-weight: bold;
+}
+
+.Table-row {
+  display: flex;
+}
+
+.Table-row:nth-child(2n) {
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+.Table-row-cell {
+  padding: 7px 10px;
+  font-family: monospace;
+  font-size: 1.1rem;
+}
+
+.Table-row-menu-button {
+  display: inline-flex;
+  width: 20px;
+  justify-content: center;
+  align-items: center;
+  color: grey;
+  cursor: pointer;
+}
+.Table-row-menu-button:hover {
+  color: black;
+}
+.Table-row-menu-button-invisible {
+  display: inline-flex;
+  width: 20px;
+  visibility: hidden;
+}

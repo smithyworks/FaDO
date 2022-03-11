@@ -1,0 +1,142 @@
+.App {
+  height: 100%;
+  width: 100%;
+}
+
+.App {
+  display: grid;
+  grid-template-columns: [sidebar-start] 270px [sidebar-end] auto [content-end];
+  grid-template-rows: [page-top] auto [page-bottom];
+}
+
+.App-sidebar {
+  grid-column-start: sidebar-start;
+  grid-column-end: sidebar-end;
+  grid-row-start: page-top;
+  grid-row-end: page-bottom;
+
+  background-color: #001219;
+  padding: 25px;
+}
+
+.App-content {
+  grid-column-start: sidebar-end;
+  grid-column-end: content-end;
+  grid-row-start: page-top;
+  grid-row-end: page-bottom;
+}
+
+.App-name {
+  color: lightblue;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.App-subtitle {
+  color: lightblue;
+  font-style: italic;
+  margin-bottom: 40px;
+}
+
+.App-link {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  padding: 10px 25px;
+  margin: 0 -25px;
+  color: white;
+  text-decoration: none;
+}
+.App-link.active {
+  color: black;
+  background-color: #0a9396;
+}
+
+.App-link:hover {
+  background-color: #005f73;
+}
+.App-link.active:hover {
+  background-color: #0a9396;
+}
+
+.App-link .App-name-icon {
+  margin-right: 18px;
+}
+
+.App-spinning {
+  animation-name: spin;
+  animation-duration: 750ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.resource-header {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.resource-row-summary {
+  display: flex;
+  align-items: baseline;
+  width: 100%;
+}
+
+.resource-row-summary-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 0 10px;
+  flex: 1 1;
+}
+.resource-row-summary-prop {
+  font-weight: 400;
+  padding: 0 10px;
+  flex: 1 1;
+}
+
+.resource-row-details {
+  /* border-top: 1px solid rgb(0, 0, 192); */
+  display: block;
+  width: 100%;
+}
+.resource-row-details-buttons {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 10px;
+}
+.resource-row-details-buttons > button {
+  margin: 5px;
+}
+.resource-row-details-title {
+  margin-top: 5px;
+  padding: 5px 10px;
+  font-weight: 500;
+}
+.resource-row-details-item {
+  display: block;
+  padding: 2px 15px;
+  margin-left: 10px;
+  width: calc(100% - 10px);
+}
+.resource-row-details-link {
+  display: block;
+  padding: 2px 15px;
+  margin-left: 10px;
+  width: calc(100% - 10px);
+  text-decoration: none;
+  color: rgb(119, 119, 119);
+}
+.resource-row-details-link:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: black;
+}
