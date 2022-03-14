@@ -1,0 +1,76 @@
+{
+  "clusters": [
+    {
+      "name": "cluster-1",
+      "zones": [
+        "global",
+        "zone-1"
+      ]
+    },
+    {
+      "name": "cluster-2",
+      "zones": [
+        "global",
+        "zone-2"
+      ]
+    },
+    {
+      "name": "cluster-3",
+      "zones": [
+        "global",
+        "zone-3"
+      ]
+    }
+  ],
+  "storage_deployments": [
+    {
+      "cluster_name": "cluster-1",
+      "alias": "d1",
+      "endpoint": "localhost:9010",
+      "access_key": "minio",
+      "secret_key": "minio123",
+      "use_ssl": false,
+      "management_url": "https://localhost:9011"
+    },
+    {
+      "cluster_name": "cluster-2",
+      "alias": "d2",
+      "endpoint": "localhost:9020",
+      "access_key": "minio",
+      "secret_key": "minio123",
+      "use_ssl": false,
+      "management_url": "https://localhost:9021"
+    },
+    {
+      "cluster_name": "cluster-3",
+      "alias": "d3",
+      "endpoint": "localhost:9030",
+      "access_key": "minio",
+      "secret_key": "minio123",
+      "use_ssl": false,
+      "management_url": "http://localhost:9031"
+    }
+  ],
+  "faas_deployments": [
+    {
+      "cluster_name": "cluster-1",
+      "url": "http://localhost:9101"
+    },
+    {
+      "cluster_name": "cluster-2",
+      "url": "http://localhost:9102"
+    },
+    {
+      "cluster_name": "cluster-3",
+      "url": "http://localhost:9103"
+    }
+  ],
+  "buckets": [
+    {
+      "name": "global",
+      "storage_deployment_alias": "d1",
+      "allowed_zones": ["global"],
+      "target_replica_count": 4
+    }
+  ]
+}

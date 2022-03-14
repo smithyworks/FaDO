@@ -1,0 +1,10 @@
+{
+    debug
+    admin 0.0.0.0:2019 {
+        origins *
+    }
+}
+
+:6000 {
+    respond 200 OK
+}

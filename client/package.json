@@ -7,7 +7,7 @@
     "url": "git+https://github.com/smithyworks/FaDO.git"
   },
   "author": "Christopher Smith",
-  "license": "gpl-3.0",
+  "license": "GPL-3.0",
   "proxy": "http://localhost:9090",
   "dependencies": {
     "@emotion/react": "^11.4.1",

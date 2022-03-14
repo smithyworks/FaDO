@@ -1,0 +1,25 @@
+{
+  "name": "fado-mock-faas",
+  "version": "1.0.0",
+  "description": "A simple server that responds to requests with identifying information.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smithyworks/FaDO.git"
+  },
+  "author": "Christopher Smith",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/smithyworks/FaDO/issues"
+  },
+  "homepage": "https://github.com/smithyworks/FaDO#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  },
+  "prettier": {
+    "printWidth": 120
+  }
+}

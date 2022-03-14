@@ -25,50 +25,50 @@
   "storage_deployments": [
     {
       "cluster_name": "cluster-1",
-      "alias": "d1",
-      "endpoint": "api.minio-1.fado",
+      "alias": "minio1",
+      "endpoint": "minio-nginx:9010",
       "access_key": "minio",
       "secret_key": "minio123",
-      "use_ssl": true,
-      "management_url": "https://minio-1.fado"
+      "use_ssl": false,
+      "management_url": "http://minio-nginx:9011"
     },
     {
       "cluster_name": "cluster-2",
-      "alias": "d2",
-      "endpoint": "api.minio-2.fado",
+      "alias": "minio2",
+      "endpoint": "minio-nginx:9020",
       "access_key": "minio",
       "secret_key": "minio123",
-      "use_ssl": true,
-      "management_url": "https://minio-2.fado"
+      "use_ssl": false,
+      "management_url": "http://minio-nginx:9021"
     },
     {
       "cluster_name": "cluster-3",
-      "alias": "d3",
-      "endpoint": "api.minio-3.fado",
+      "alias": "minio3",
+      "endpoint": "minio-nginx:9030",
       "access_key": "minio",
       "secret_key": "minio123",
-      "use_ssl": true,
-      "management_url": "https://minio-3.fado"
+      "use_ssl": false,
+      "management_url": "http://minio-nginx:9031"
     }
   ],
   "faas_deployments": [
     {
       "cluster_name": "cluster-1",
-      "url": "http://127.17.0.1:4001"
+      "url": "http://faas1:9100"
     },
     {
       "cluster_name": "cluster-2",
-      "url": "http://127.17.0.1:4002"
+      "url": "http://faas2:9100"
     },
     {
       "cluster_name": "cluster-3",
-      "url": "http://127.17.0.1:4003"
+      "url": "http://faas3:9100"
     }
   ],
   "buckets": [
     {
       "name": "global",
-      "storage_deployment_alias": "d1",
+      "storage_deployment_alias": "minio1",
       "allowed_zones": ["global"],
       "target_replica_count": 4
     }

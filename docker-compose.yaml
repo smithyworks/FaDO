@@ -1,0 +1,199 @@
+version: '3.9'
+
+x-minio-common: &minio-common
+  image: minio/minio:RELEASE.2021-07-12T02-44-53Z
+  environment:
+    MINIO_ROOT_USER: minio
+    MINIO_ROOT_PASSWORD: minio123
+  healthcheck:
+    test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+    interval: 30s
+    timeout: 20s
+    retries: 3
+
+services:
+  minio1:
+    <<: *minio-common
+    command: server --console-address ":9001" http://minio{1...3}/data{1...2}
+    hostname: minio1
+    volumes:
+      - minio1_data1:/data1
+      - minio1_data2:/data2
+  minio2:
+    <<: *minio-common
+    command: server --console-address ":9001" http://minio{1...3}/data{1...2}
+    hostname: minio2
+    volumes:
+      - minio2_data1:/data1
+      - minio2_data2:/data2
+  minio3:
+    <<: *minio-common
+    command: server --console-address ":9001" http://minio{1...3}/data{1...2}
+    hostname: minio3
+    volumes:
+      - minio3_data1:/data1
+      - minio3_data2:/data2
+
+  minio4:
+    <<: *minio-common
+    command: server --console-address ":9001" http://minio{4...6}/data{3...4}
+    hostname: minio4
+    volumes:
+      - minio4_data1:/data3
+      - minio4_data2:/data4
+  minio5:
+    <<: *minio-common
+    command: server --console-address ":9001" http://minio{4...6}/data{3...4}
+    hostname: minio5
+    volumes:
+      - minio5_data1:/data3
+      - minio5_data2:/data4
+  minio6:
+    <<: *minio-common
+    command: server --console-address ":9001" http://minio{4...6}/data{3...4}
+    hostname: minio6
+    volumes:
+      - minio6_data1:/data3
+      - minio6_data2:/data4
+
+  minio7:
+    <<: *minio-common
+    command: server --console-address ":9001" http://minio{7...9}/data{5...6}
+    hostname: minio7
+    volumes:
+      - minio7_data1:/data5
+      - minio7_data2:/data6
+  minio8:
+    <<: *minio-common
+    command: server --console-address ":9001" http://minio{7...9}/data{5...6}
+    hostname: minio8
+    volumes:
+      - minio8_data1:/data5
+      - minio8_data2:/data6
+  minio9:
+    <<: *minio-common
+    command: server --console-address ":9001" http://minio{7...9}/data{5...6}
+    hostname: minio9
+    volumes:
+      - minio9_data1:/data5
+      - minio9_data2:/data6
+
+  minio-nginx:
+    image: nginx:1.19.2-alpine
+    hostname: nginx
+    volumes:
+      - ./deployment/minio.nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - 9011:9011
+      - 9010:9010
+      - 9021:9021
+      - 9020:9020
+      - 9031:9031
+      - 9030:9030
+    depends_on:
+      - minio1
+      - minio2
+      - minio3
+      - minio4
+      - minio5
+      - minio6
+      - minio7
+      - minio8
+      - minio9
+
+  faas1:
+    build: ./mock-faas
+    environment:
+      SERVER_NAME: FaDO-mock-faas-1
+      SERVER_PORT: 9100
+    ports:
+      - 9101:9100
+
+  faas2:
+    build: ./mock-faas
+    environment:
+      SERVER_NAME: FaDO-mock-faas-2
+      SERVER_PORT: 9100
+    ports:
+      - 9102:9100
+
+  faas3:
+    build: ./mock-faas
+    environment:
+      SERVER_NAME: FaDO-mock-faas-3
+      SERVER_PORT: 9100
+    ports:
+      - 9103:9100
+
+  database:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: fado
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: fado_db
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./database:/docker-entrypoint-initdb.d
+    ports:
+      - 5454:5432
+
+  load-balancer:
+    image: caddy:latest
+    container_name: caddy
+    user: 1000:1000
+    restart: unless-stopped
+    volumes:
+        - ./deployment/load-balancer.Caddyfile:/etc/caddy/Caddyfile
+        - caddy_data:/data
+        - caddy_config:/config
+    ports:
+        - 6000:6000
+        - 2019:2019
+
+  fado-server:
+    build: .
+    environment:
+      FADO_DATABASE: postgres://fado:password@database:5432/fado_db
+      FADO_SERVER_URL: http://fado-server:9090
+      FADO_CADDY_ADMIN_URL: http://load-balancer:2019
+      FADO_LB_PORT: 6000
+    ports:
+      - 9090:9090
+    volumes:
+      - ./deployment/compose.server-config.json:/app/config.json
+    depends_on:
+      - minio-nginx
+      - faas1
+      - faas2
+      - faas3
+      - database
+      - load-balancer
+
+## By default this config uses default local driver,
+## For custom volumes replace with volume driver configuration.
+volumes:
+  minio1_data1:
+  minio1_data2:
+  minio2_data1:
+  minio2_data2:
+  minio3_data1:
+  minio3_data2:
+
+  minio4_data1:
+  minio4_data2:
+  minio5_data1:
+  minio5_data2:
+  minio6_data1:
+  minio6_data2:
+
+  minio7_data1:
+  minio7_data2:
+  minio8_data1:
+  minio8_data2:
+  minio9_data1:
+  minio9_data2:
+
+  db_data:
+
+  caddy_data:
+  caddy_config:

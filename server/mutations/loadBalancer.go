@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"log"
 	"net/http"
 	"time"
 
@@ -16,7 +15,6 @@ import (
 
 func ConfigureLoadBalancer(conn database.DBConn) (err error) {
 	if conn == nil {
-		log.Println("cl2")
 		if c, err := database.Acquire(); err != nil {
 			return util.ProcessErr(err)
 		} else {
@@ -47,7 +45,6 @@ func ConfigureLoadBalancer(conn database.DBConn) (err error) {
 	var serverName string
 	var serverConfig database.LoadBalancerServerConfig
 	portPart := fmt.Sprintf(":%v", port)
-	log.Print("Host", host)
 	if port == "" {
 		return util.ProcessErr(fmt.Errorf("Load balancing port must be specified!"))
 	} else if host == "" {

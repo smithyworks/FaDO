@@ -1,0 +1,26 @@
+version: '3.9'
+
+services:
+  faas1:
+    build: ../mock-faas
+    environment:
+      SERVER_NAME: FaDO-mock-faas-1
+      SERVER_PORT: 9101
+    ports:
+      - 9101:9101
+
+  faas2:
+    build: ../mock-faas
+    environment:
+      SERVER_NAME: FaDO-mock-faas-2
+      SERVER_PORT: 9102
+    ports:
+      - 9102:9102
+
+  faas3:
+    build: ../mock-faas
+    environment:
+      SERVER_NAME: FaDO-mock-faas-3
+      SERVER_PORT: 9103
+    ports:
+      - 9103:9103
