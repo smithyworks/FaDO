@@ -100,17 +100,6 @@ func OpenFile(name string) (fs.File, error) {
 
 // Handle serving the single-page frontend application.
 func SpaHandler() http.Handler {
-    // handler := fsFunc(func(name string) (fs.File, error) {
-	// 	filePath := path.Join("build", name)
-
-	// 	f, err := staticFiles.Open(filePath)
-	// 	if os.IsNotExist(err) {
-	// 		return staticFiles.Open("build/index.html")
-	// 	}
-
-    //     return f, err
-    // })
-
     return http.FileServer(http.FS(fsFunc(OpenFile)))
 }
 
